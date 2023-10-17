@@ -1,0 +1,19 @@
+nav {
+    padding-left: 50px!important;
+}
+
+main {
+    padding: 50px;
+}
+
+.nome-aluno{
+ text-align: center;
+ display: flex;
+ flex-direction: column
+}
+
+.nome-aluno span {
+    font-weight: 400;
+    font-size: 12px;
+    color: #333
+}
