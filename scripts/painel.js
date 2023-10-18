@@ -1,5 +1,5 @@
 $(function() {
-    $(".btn-primary").click(function() {
-        $('#myInput').trigger('focus')
+    $("#btnAddAluno").click(function() {
+        $('#modalCadastro').modal('show')
     })
 })
