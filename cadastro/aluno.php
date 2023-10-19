@@ -1,3 +1,7 @@
+<?php
+include_once("aluno_config.php");
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -5,7 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>AcademiaGym - Cadastro de Alunos</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 
@@ -17,8 +21,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">Academia Gym</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
-            aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -48,22 +51,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th>
-                                <button type="button" class="btn btn-primary btn-editar"><i class="fas fa-pencil"></i> Editar</button>
-                                <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i> Inativar</button>
-                            </th>
-                            <td>Mateus Nascimento</td>
-                            <td>(11) 94872516</td>
-                            <td>mateus@email.com</td>
-                            <td>17/10/2023</td>
-                        </tr>
+                        <?php echo $linhasTabela;?>
                     </tbody>
                 </table>
             </div>
         </div>
     </main>
-
     <div id="modalCadastro" class="modal modal-lg" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -71,21 +64,21 @@
                     <h5 class="modal-title">Formulario cadastro de aluno</h5>
                 </div>
                 <div class="modal-body">
-                    <form action="" method="get">
+                    <form action="aluno.php" method="post">
                         <div class="form-group">
-                          <label for="exampleInputEmail1">Nome do Aluno</label>
-                          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                            <label for="nome">Nome do Aluno*</label>
+                            <input type="text" id="nome" class="form-control" name="nome" placeholder="Digite o nome" required>
                         </div>
                         <div class="form-group">
-                          <label for="exampleInputEmail1">Telefone</label>
-                          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                            <label for="telefone">Telefone</label>
+                            <input type="number" id="telefone" class="form-control" name="telefone" placeholder="Digite o Telefone" required>
                         </div>
                         <div class="form-group">
-                          <label for="exampleInputEmail1">E-mail</label>
-                          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" class="form-control" name="email" placeholder="Digite um e-mail" required>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary">Salvar</button>
+                        <div class="modal-footer mt-4">
+                            <input type="submit" class="btn btn-primary" value="Gravar">
                             <button type="button" class="btn btn-secondary dimiss-modal">Fechar</button>
                         </div>
                     </form>
