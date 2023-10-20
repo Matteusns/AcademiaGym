@@ -12,10 +12,9 @@ include_once("aluno_config.php");
     <title>AcademiaGym - Cadastro de Alunos</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/painel.css">
 </head>
 
 <body>
@@ -35,7 +34,7 @@ include_once("aluno_config.php");
 
     <main>
         <div class="mb-3">
-            <button class="btn btn-primary" id="btnAddAluno"><i class="fas fa-plus"></i> Adicionar Aluno</button>
+            <button class="btn btn-primary" id="btnAddAluno" onclick="abrirModalCadastro()"><i class="fas fa-plus"></i> Adicionar Aluno</button>
         </div>
         <div class="card">
             <h5 class="card-header">Cadastro do Aluno</h5>
@@ -57,6 +56,7 @@ include_once("aluno_config.php");
             </div>
         </div>
     </main>
+
     <div id="modalCadastro" class="modal modal-lg" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -70,27 +70,75 @@ include_once("aluno_config.php");
                             <input type="text" id="nome" class="form-control" name="nome" placeholder="Digite o nome" required>
                         </div>
                         <div class="form-group">
-                            <label for="telefone">Telefone</label>
+                            <label for="telefone">Telefone*</label>
                             <input type="number" id="telefone" class="form-control" name="telefone" placeholder="Digite o Telefone" required>
                         </div>
                         <div class="form-group">
-                            <label for="email">E-mail</label>
+                            <label for="email">E-mail*</label>
                             <input type="email" id="email" class="form-control" name="email" placeholder="Digite um e-mail" required>
                         </div>
+
+                        <!-- IMPORTANTE MANTER O class="idCadastro"-->
+                        <input type="text" class="idCadastro" name="id" value="0" hidden>
+                        <!-- IMPORTANTE -->
                         <div class="modal-footer mt-4">
                             <input type="submit" class="btn btn-primary" value="Gravar">
-                            <button type="button" class="btn btn-secondary dimiss-modal">Fechar</button>
+                            <button type="button" class="btn btn-secondary dimiss-modal" data-dismiss="modal" aria-label="Close">Fechar</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
+    <div id="modalInativar" class="modal modal-lg" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Inativar Aluno</h5>
+                </div>
+                <div class="modal-body text-center">
+                    <h5>Tem certeza que quer inativar esse aluno?</h5>
+                    <form action="aluno.php" method="post">
+                        <!-- IMPORTANTE MANTER O class="idCadastro"-->
+                        <input type="text" class="idCadastro" name="idInativar" hidden>
+                        <!-- IMPORTANTE -->
+                        <div class="modal-footer mt-4">
+                            <input type="submit" class="btn btn-danger" value="Inativar">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalAtivar" class="modal modal-lg" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Inativar Aluno</h5>
+                </div>
+                <div class="modal-body text-center">
+                    <h5>Tem certeza que quer ativar esse aluno?</h5>
+                    <form action="aluno.php" method="post">
+                        <!-- IMPORTANTE MANTER O class="idCadastro"-->
+                        <input type="text" class="idCadastro" name="idAtivar" hidden>
+                        <!-- IMPORTANTE -->
+                        <div class="modal-footer mt-4">
+                            <input type="submit" class="btn btn-success" value="Ativar">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
-
-    <script src="../scripts/painel.js"></script>
+    
+    <script src="../scripts/scripts.js"></script>
+    <script src="../scripts/aluno.js"></script>
 </body>
 
 </html>

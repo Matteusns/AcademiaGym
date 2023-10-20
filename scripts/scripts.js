@@ -1,13 +1,27 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // do something here ...
-  }, false);
+$(function () {
+  $('.dimiss-modal').click(() => {
+    $('.modal').modal("hide")
+  })
+})
 
-function name(params) {
-    
+function abrirModalCadastro(idModal = 0) {
+  if(idModal == 0) {
+    // Limpar campos
+    $('input[type=text]').val("")
+    $('input[type=email]').val("")
+    $('input[type=number]').val("")
+  }
+
+  $(".idCadastro").val(idModal)
+  $('#modalCadastro').modal('show')
 }
-document.getElementsByClassName("fecharModal").addEventListener("click", function() {
-    // Encontre a modal pelo ID e feche-a
-    var modal = document.getElementById("myModal");
-    var modalInstance = new bootstrap.Modal(modal);
-    modalInstance.hide();
-});
+
+function abrirModalInativar(idModal = 0) {
+  $(".idCadastro").val(idModal)
+  $('#modalInativar').modal('show')
+}
+
+function abrirModalAtivar(idModal = 0) {
+  $(".idCadastro").val(idModal)
+  $('#modalAtivar').modal('show')
+}
