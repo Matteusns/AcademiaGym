@@ -1,5 +1,5 @@
 <?php
-include_once("aluno_config.php");
+include_once("funcionario_config.php");
 ?>
 
 <!DOCTYPE html>
@@ -9,7 +9,7 @@ include_once("aluno_config.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>AcademiaGym - Cadastro de Alunos</title>
+    <title>AcademiaGym - Cadastro de Funcionarios</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -25,8 +25,8 @@ include_once("aluno_config.php");
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="#">Alunos</a>
-                <a class="nav-item nav-link" href="funcionario.php">Funcionarios</a>
+                <a class="nav-item nav-link" href="aluno.php">Alunos</a>
+                <a class="nav-item nav-link active" href="#">Funcionarios</a>
                 <a class="nav-item nav-link" href="#">Pricing</a>
             </div>
         </div>
@@ -34,17 +34,16 @@ include_once("aluno_config.php");
 
     <main>
         <div class="mb-3">
-            <button class="btn btn-primary" id="btnAddAluno" onclick="abrirModalCadastro()"><i class="fas fa-plus"></i> Adicionar Aluno</button>
+            <button class="btn btn-primary" id="btnAddAluno" onclick="abrirModalCadastro()"><i class="fas fa-plus"></i> Adicionar Funcionario</button>
         </div>
         <div class="card">
-            <h5 class="card-header">Cadastro do Aluno</h5>
+            <h5 class="card-header">Cadastro do Funcionario</h5>
             <div class="card-body">
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>Ação</th>
                             <th>Nome</th>
-                            <th>Telefone</th>
                             <th>E-mail</th>
                             <th>Data Cadastro</th>
                         </tr>
@@ -61,21 +60,21 @@ include_once("aluno_config.php");
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Formulario cadastro de aluno</h5>
+                    <h5 class="modal-title">Formulario cadastro de funcionario</h5>
                 </div>
                 <div class="modal-body">
-                    <form action="aluno.php" method="post">
+                    <form action="funcionario.php" method="post">
                         <div class="form-group">
-                            <label for="nome">Nome do Aluno*</label>
+                            <label for="nome">Nome do Funcionario*</label>
                             <input type="text" id="nome" class="form-control" name="nome" placeholder="Digite o nome" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="telefone">Telefone*</label>
-                            <input type="number" id="telefone" class="form-control" name="telefone" placeholder="Digite o Telefone" required>
                         </div>
                         <div class="form-group">
                             <label for="email">E-mail*</label>
                             <input type="email" id="email" class="form-control" name="email" placeholder="Digite um e-mail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="senha">Senha*</label>
+                            <input type="password" id="senha" class="form-control" name="senha" placeholder="Digite a senha" required>
                         </div>
 
                         <!-- IMPORTANTE MANTER O class="idCadastro"-->
@@ -95,11 +94,11 @@ include_once("aluno_config.php");
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Inativar Aluno</h5>
+                    <h5 class="modal-title">Inativar funcionario</h5>
                 </div>
                 <div class="modal-body text-center">
-                    <h5>Tem certeza que quer inativar esse aluno?</h5>
-                    <form action="aluno.php" method="post">
+                    <h5>Tem certeza que quer inativar esse funcionario?</h5>
+                    <form action="funcionario.php" method="post">
                         <!-- IMPORTANTE MANTER O class="idCadastro"-->
                         <input type="text" class="idCadastro" name="idInativar" hidden>
                         <!-- IMPORTANTE -->
@@ -116,11 +115,11 @@ include_once("aluno_config.php");
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Inativar Aluno</h5>
+                    <h5 class="modal-title">Inativar Funcionario</h5>
                 </div>
                 <div class="modal-body text-center">
-                    <h5>Tem certeza que quer ativar esse aluno?</h5>
-                    <form action="aluno.php" method="post">
+                    <h5>Tem certeza que quer ativar esse funcionario?</h5>
+                    <form action="funcionario.php" method="post">
                         <!-- IMPORTANTE MANTER O class="idCadastro"-->
                         <input type="text" class="idCadastro" name="idAtivar" hidden>
                         <!-- IMPORTANTE -->
@@ -138,7 +137,7 @@ include_once("aluno_config.php");
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
     
     <script src="../scripts/scripts.js"></script>
-    <script src="../scripts/aluno.js"></script>
+    <script src="../scripts/funcionario.js"></script>
 </body>
 
 </html>

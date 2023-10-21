@@ -1,62 +1,62 @@
 <?php
 include_once("../config.php");
 
-$linhasTabela = getAlunos($conexao);;
+$linhasTabela = getFuncionarios($conexao);;
 
 if (isset($_POST["nome"])) {
-    gravaDadosAlunos($conexao);
+    gravaDadosFuncionario($conexao);
 }
 
 if (isset($_POST["idInativar"])) {
-    inativarAluno($conexao);
+    inativarFuncionario($conexao);
 }
 
 if (isset($_POST["idAtivar"])) {
-    ativarAluno($conexao);
+    ativarFuncionario($conexao);
 }
 
 
 $conexao->close();
 
-function gravaDadosAlunos($conexao) {
+function gravaDadosFuncionario($conexao) {
     $id = $_POST["id"];
     $nome = $_POST["nome"];
-    $telefone = $_POST["telefone"];
     $email = $_POST["email"];
+    $senha = $_POST["senha"];
     $dataCadastro =  date("Y-m-d");
 
     //Valida se é um cadastro novo ou é para editar
     if ($id == 0) {
-        $result = mysqli_query($conexao, "INSERT INTO Alunos (nome, telefone, email, dataCadastro, ativo)
-        VALUES('$nome', '$telefone', '$email', '$dataCadastro', 1)");
+        $result = mysqli_query($conexao, "INSERT INTO funcionario (nome, email, senha, dataCadastro, ativo)
+        VALUES('$nome', '$email', '$senha', '$dataCadastro', 1)");
     } else {
-        $sql = "UPDATE Alunos SET nome = '$nome', telefone = '$telefone', email = '$email', WHERE id = $id";
+        $sql = "UPDATE funcionario SET nome = '$nome', email = '$email', senha = '$senha', WHERE id = $id";
         $result = mysqli_query($conexao, $sql);
     }
     if ($result) {
-        header("Location: aluno.php");
+        header("Location: funcionario.php");
     }
 }
-function inativarAluno($conexao) {
+function inativarFuncionario($conexao) {
     $id = $_POST["idInativar"];
-    $sql = "UPDATE Alunos SET ativo = '0' WHERE id = $id";
+    $sql = "UPDATE funcionario SET ativo = '0' WHERE id = $id";
     $result = mysqli_query($conexao, $sql);
 
     if ($result) {
-        header("Location: aluno.php");
+        header("Location: funcionario.php");
     }
 }
-function ativarAluno($conexao) {
+function ativarFuncionario($conexao) {
     $id = $_POST["idAtivar"];
-    $sql = "UPDATE Alunos SET ativo = '1' WHERE id = $id";
+    $sql = "UPDATE funcionario SET ativo = '1' WHERE id = $id";
     $result = mysqli_query($conexao, $sql);
 
     if ($result) {
-        header("Location: aluno.php");
+        header("Location: funcionario.php");
     }
 }
-function getAlunos($conexao) {
-    $sql = "SELECT * FROM Alunos";
+function getFuncionarios($conexao) {
+    $sql = "SELECT * FROM funcionario";
     $result = mysqli_query($conexao, $sql);
     $arrAlunos = array();
 
@@ -64,10 +64,10 @@ function getAlunos($conexao) {
         while ($row = $result->fetch_assoc()) {
             $arrAlunos[] = $row;
         }
-
         // salva as variaveis em uma variavel js para usar no metodo de editar
         echo "<script>var dadosTela = " . json_encode($arrAlunos) . ";</script>";
     }
+    
 
     return populaTabela($arrAlunos);
 }
@@ -78,7 +78,7 @@ function populaTabela($arrAlunos) {
             $id = $row["id"];
             $botoes = '';
             if($row["ativo"] == 1) {
-                $botoes = '<button type="button" onclick="abrirModalCadastroAluno(' . $id . ')" class="btn btn-primary btn-editar mr-2"><i class="fas fa-pencil"></i> Editar</button>'.
+                $botoes = '<button type="button" onclick="abrirModalCadastroFuncionario(' . $id . ')" class="btn btn-primary btn-editar mr-2"><i class="fas fa-pencil"></i> Editar</button>'.
                 '<button type="button" onclick="abrirModalInativar(' . $id . ')" class="btn btn-danger"><i class="fas fa-times"></i> Inativar</button>';
             }else{
                 $botoes = '<button type="button" onclick="abrirModalAtivar(' . $id . ')" class="btn btn-success btn-editar mr-2"><i class="fas fa-check"></i> Ativar</button>';
@@ -88,7 +88,6 @@ function populaTabela($arrAlunos) {
             $linhas .= $botoes;
             $linhas .= "</td>";
             $linhas .= "<td>" . $row["nome"] . "</td>";
-            $linhas .= "<td>" . $row["telefone"] . "</td>";
             $linhas .= "<td>" . $row["email"] . "</td>";
             $linhas .= "<td>" . $row["dataCadastro"] . "</td>";
             $linhas .= "</tr>";

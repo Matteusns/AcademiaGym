@@ -10,6 +10,7 @@ function abrirModalCadastro(idModal = 0) {
     $('input[type=text]').val("")
     $('input[type=email]').val("")
     $('input[type=number]').val("")
+    $('input[type=password]').val("")
   }
 
   $(".idCadastro").val(idModal)

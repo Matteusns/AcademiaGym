@@ -1,9 +1,3 @@
-$(function () {
-    
-
-})
-
-
 function abrirModalCadastroAluno(idModal = 0) {
     var aluno = dadosTela.find(dados => dados.id == idModal);
 
